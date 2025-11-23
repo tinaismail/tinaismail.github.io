@@ -3,6 +3,30 @@
 
 {%- for network in site.social-network-links -%}
 
+  {%- if network[0] == "tryhackme" -%}
+  <li class="list-inline-item">
+    <a href="https://tryhackme.com/p/{{ network[1] }}" title="TryHackMe">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <img src="{{ '../assets/img/tryhackme.svg' | relative_url }}" alt="TryHackMe" class="fa-stack-1x tryhackme-icon" style="width: 60%; height: 60%; margin: 20%;">
+      </span>
+      <span class="sr-only">TryHackMe</span>
+    </a>
+  </li>
+  {%- endif -%}
+
+  {%- if network[0] == "devpost" -%}
+  <li class="list-inline-item">
+    <a href="https://devpost.com/{{ network[1] }}" title="Devpost">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <img src="{{ '../assets/img/devpost.svg' | relative_url }}" alt="Devpost" class="fa-stack-1x devpost-icon" style="width: 60%; height: 60%; margin: 20%;">
+      </span>
+      <span class="sr-only">Devpost</span>
+    </a>
+  </li>
+  {%- endif -%}
+
   {%- if network[0] == "rss" and network[1] and site.rss-description -%}
   <li class="list-inline-item">
     <a href="{{ '/feed.xml' | relative_url }}" title="RSS">

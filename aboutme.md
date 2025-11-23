@@ -1,16 +1,20 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Passionate about making (and breaking) things.
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+Hey, I'm Tina Ismail! I'm an electrical engineering student at McMaster University trying to make my mark as a woman in engineering, cybersecurity, and tech. Join me as I discover the world.
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+### Experience:
 
-What else do you need?
+- Software Developer Intern at Loblaw
+- Student Research Partner
+- Technical Content Developer Intern at Ceridian Dayforce Inc
 
-### My story
+### Volunteering:
+- CyberStart Canada Ambassador
+- IEEE McMaster Branch Chair
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+### Certifications:
+- GFACT Certificate
