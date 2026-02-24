@@ -2,17 +2,22 @@
 layout: post
 title: SQLi Challenge Writeup
 subtitle: ISSessions 2026 Fantasy CTF
-thumbnail-img: /assets/img/issessions26-sqli.png
-share-img: /assets/img/issessions26-sqli.png
+thumbnail-img: /assets/img/issessions26-shop.png
+share-img: /assets/img/issessions26-shop.png
+image: /assets/img/issessionsfantasyctf26.jpg
 tags: [ctf, writeup, sql injection]
 author: Tina Ismail
 ---
 <style>
-    h1, h2, h3, p {
+    body{
+        background-color:#f0e4d1;
+        background-image:url(image-1.png);
+    }
+    p {
         font-family: "Trebuchet MS", serif;
         font-weight:bold;
     }
-    h1,h2,h3{
+    .b3{
         font-family: Harrington, Papyrus;
         background-color:#436436;
         border-radius:20px;
@@ -21,10 +26,9 @@ author: Tina Ismail
         color:white;
         box-shadow: 0 0 10px #436436, 0 0 20px #436436;
         margin-top:30px;
-        transition: box-shadow 0.3s ease-in-out;
+        font-weight:bold;
     }
     *{
-        background-color:#f0e4d1;
         color:#141210;
     }
     code{
@@ -35,16 +39,13 @@ author: Tina Ismail
         margin:auto;
     }
 </style>
-## Greetings weary travellers!
-
-Settle down as I tell you my tale. Few will believe my exploits but I swear it to be true. Here you will learn of my forbidden methods.
+Greetings weary travellers! Settle down as I tell you my tale of epic intrigue. Few will believe my exploits but I swear it to be true. Here you will learn of my forbidden methods.
 
 We enter this portal of dubious origin. The description specifically mentions the username slime001, and the target URL has the string sql-injection. This leads me to believe that there is a sql injection vulnerability in the login form. 
 
 ![The Lost Scroll Challenge Discription](/assets/img/issessions26-sqli-desc.png)
 
-### The Magic of SQL Injections
-You might be wondering what that string was that we entered into the password field. It certainly looks strange, but I assure you I am no magician! This is a classic SQL Injection payload.<br>
+## <div class="b3">The Magic of SQL Injections</div>
 
 <a class="image" href="https://xkcd.com/327/">![Exploits of a Mom](https://imgs.xkcd.com/comics/exploits_of_a_mom.png)</a>
 
@@ -63,13 +64,12 @@ Below is a standard SQL query within a php script. The query is `"SELECT * FROM 
 Suppose I were to input the username `att4ni`. Then the query would look like: `"SELECT * FROM users WHERE username='att4ni'"` and the result would give me every entry from the database users where att4ni is the username. Makes sense!<br>
 Now what if I were a hacker and I wanted to retrieve all the data for every user in the users database? 
 
-
-## Vulnerable Login AKA Alohomora
+## <div class="b3">Vulnerable Login AKA Alohomora</div>
 With this in mind, we set the username field to slime001, and attempt a sql injection on the password field. This took me quite a while if I'm honest, since I was attempting more complicated injection methods using sqlmap. I'm glad I read up on this tool, because although it did not aid me in this part of the challenge, it came in handy for the following part. At the end, the enchantment that did the trick was `' OR 1=1;--`. After hitting the Submit Query button, we're off to part 2 of the challenge.<br>
 
 ![Login Page](/assets/img/issessions26-sqli.png)
 
-## Mythical Shop AKA Show Me Your Wares
+## <div class="b3">Mythical Shop AKA Show Me Your Wares</div>
 
 ![Slime001's Mythical Shop](/assets/img/issessions26-sqli-shop.png)
 
@@ -169,15 +169,18 @@ It's a bit hard to make sense of in the above SQLMAP output snippet, so here is 
 | 3 | An ancient relic said to be penned in fire and scale by the first dragons at the dawn of magic. Its wyrm-hide parchment is etched with living runes that shift and rearrange themselves, revealing forbidden truths only to those clever—or reckless—enough to read between the lines. Legends claim the scroll does not grant power directly, but instead teaches how to bend the laws of magic, slipping commands into reality the way a rogue spell slips past a ward. Inscribed deep within its final ciphered verse lies the mark of its mastery, a phrase known to scholars and spellbreakers alike: FantasyCTF{qu3ry_th3_dr4g0n_scr0ll_0f_p0w3r}, a reminder that even the strongest systems can fall to a well-crafted incantation. | Dragon Scroll | images/dragon scroll.png | 500 | 1 |
 | 4 | A finely crafted blade imbued with the steady, relentless power of the ocean. Its magic is neither subtle nor overwhelming, manifesting in cool hues, faint mist, and a constant damp chill along the edge. The sword strikes with the weight of crashing waves, wearing down foes through persistence rather than sudden force, and its enchantment allows it to cut cleanly through armor and resist corrosion or breakage. Favored by sailors, coastal warriors, and tide-bound guardians, the sword embodies balance—strong and reliable, yet restrained—drawing its strength from the endless patience and quiet dominance of the sea. | Sword of the Sea | images/blue sword.png | 700 | 0 |
 
+<h3>
 <details>
-<summary>The word of power</summary>
+<summary>The Enchantment We need</summary>
 
 FantasyCTF{qu3ry_th3_dr4g0n_scr0ll_0f_p0w3r}
 
-</details>
+</details></h3>
 
-### Special Acknowledgements
-Thank you to TrendMicro and KPMG for your support this weekend! To our friends at TrendMicro, I learned a lot from your insights during the resume roast, and I shall commit to memory the errs of my fellow adventurers and merryfolk in the pursuit of employment. Thanks to KPMG for hosting us and opening your Toronto office up for our use - it's always a delight to take in the sights from up so high (especially on such a foggy weekend)!
+## <div class="b3">Special Acknowledgements</div>
+Thank you to TrendMicro and KPMG for your support this weekend! <br>
+
+To our friends at TrendMicro, I learned a lot from your insights during the resume roast, and I shall commit to memory the errs of my fellow adventurers and merryfolk in the pursuit of employment. Thanks to KPMG for hosting us and opening your Toronto office up for our use - it's always a delight to take in the sights from up so high (especially on such a foggy weekend)!<br>
 
 Finally, I express my sincerest gratitude to the ISSessions Fantasy CTF team for organizing another successful CTF! Your dedication shines through, and the theme this year was most enjoyable. Please spare us the accent next time, if you please.
 
