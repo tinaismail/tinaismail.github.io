@@ -4,7 +4,7 @@ title: SQLi Challenge Writeup
 subtitle: ISSessions 2026 Fantasy CTF
 thumbnail-img: /assets/img/issessions26-shop.png
 share-img: /assets/img/issessions26-shop.png
-image: \assets\img\issessionsfantasyctf26.jpg
+image: /assets/img/issessionsfantasyctf26.jpg
 tags: [ctf, writeup, sql injection]
 author: Tina Ismail
 ---
