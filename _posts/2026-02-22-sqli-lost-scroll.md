@@ -10,8 +10,7 @@ author: Tina Ismail
 ---
 <style>
     body{
-        background-color:#f0e4d1;
-        background-image:url(image-1.png);
+        background-image:url(scroll.png);
     }
     p {
         font-family: "Trebuchet MS", serif;
@@ -45,7 +44,7 @@ We enter this portal of dubious origin. The description specifically mentions th
 
 ![The Lost Scroll Challenge Discription](/assets/img/issessions26-sqli-desc.png)
 
-## <div class="b3">The Magic of SQL Injections</div>
+<h2 class="b3">The Magic of SQL Injections</h2>
 
 <a class="image" href="https://xkcd.com/327/">![Exploits of a Mom](https://imgs.xkcd.com/comics/exploits_of_a_mom.png)</a>
 
@@ -64,12 +63,12 @@ Below is a standard SQL query within a php script. The query is `"SELECT * FROM 
 Suppose I were to input the username `att4ni`. Then the query would look like: `"SELECT * FROM users WHERE username='att4ni'"` and the result would give me every entry from the database users where att4ni is the username. Makes sense!<br>
 Now what if I were a hacker and I wanted to retrieve all the data for every user in the users database? 
 
-## <div class="b3">Vulnerable Login AKA Alohomora</div>
+<h2 class="b3">Vulnerable Login AKA Alohomora</h2>
 With this in mind, we set the username field to slime001, and attempt a sql injection on the password field. This took me quite a while if I'm honest, since I was attempting more complicated injection methods using sqlmap. I'm glad I read up on this tool, because although it did not aid me in this part of the challenge, it came in handy for the following part. At the end, the enchantment that did the trick was `' OR 1=1;--`. After hitting the Submit Query button, we're off to part 2 of the challenge.<br>
 
 ![Login Page](/assets/img/issessions26-sqli.png)
 
-## <div class="b3">Mythical Shop AKA Show Me Your Wares</div>
+<h2 class="b3">Mythical Shop AKA Show Me Your Wares</h2>
 
 ![Slime001's Mythical Shop](/assets/img/issessions26-sqli-shop.png)
 
@@ -177,10 +176,13 @@ FantasyCTF{qu3ry_th3_dr4g0n_scr0ll_0f_p0w3r}
 
 </details></h3>
 
-## <div class="b3">Special Acknowledgements</div>
+<h2 class="b3">Special Acknowledgements</h2>
+
 Thank you to TrendMicro and KPMG for your support this weekend! <br>
 
-To our friends at TrendMicro, I learned a lot from your insights during the resume roast, and I shall commit to memory the errs of my fellow adventurers and merryfolk in the pursuit of employment. Thanks to KPMG for hosting us and opening your Toronto office up for our use - it's always a delight to take in the sights from up so high (especially on such a foggy weekend)!<br>
+To our friends at TrendMicro, I learned a lot from your insights during the resume roast, and I shall commit to memory the errs of my fellow adventurers and merryfolk in the pursuit of employment. 
+
+Thanks to KPMG for hosting us and opening your Toronto office up for our use - it's always a delight to take in the sights from up so high (especially on such a foggy weekend)!<br>
 
 Finally, I express my sincerest gratitude to the ISSessions Fantasy CTF team for organizing another successful CTF! Your dedication shines through, and the theme this year was most enjoyable. Please spare us the accent next time, if you please.
 
