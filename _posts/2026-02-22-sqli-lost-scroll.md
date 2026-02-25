@@ -5,7 +5,7 @@ subtitle: ISSessions 2026 Fantasy CTF
 thumbnail-img: /assets/img/issessionsfantasyctf26.jpg
 share-img: /assets/img/issessions26-sqli-shop.png
 image: /assets/img/issessions26-sqli-shop.png
-tags: [ctf, writeup, sqli, idor]
+tags: [ctf, writeup, sqli]
 author: Tina Ismail
 ---
 Greetings weary travellers! Settle down as I tell you my tale of epic intrigue. Few will believe my exploits but I swear they be true. Here you will learn of my forbidden methods.
@@ -37,15 +37,15 @@ The second thing I notice is the username field in the URL. Perhaps an [IDOR](ht
 ![Item 4](/assets/img/issessions26-item4.png)
 
 Check out the URLs. Notice something off? It looks like item 3 is missing! I try inputting `3` in the URL but I get an error. What's really happening?<br>
-![IDOR Attempt](/assets/img/issessions26-badrequest.png)
+![Bad Request Attempt](/assets/img/issessions26-badrequest.png)
 
-Well it's a subtle detail, but the key here is to change the `Origin` header to be the root path. This makes the application think that you're accessing the resource from clicking on it in the main shop dashboard, instead of just changing the path in the URL directly. Doing that, we get a `200 OK` and we can see the hidden contents of the page, plus the flag in the item description.
+Well it's a subtle detail, but the key here is to change the `Referrer` header to be the `https://issessionsctf-sql-injection-challenge.chals.io/?username=admin`. It also needs to be a POST request with the payload `id=3`. This makes the application think that you're accessing the resource as the admin user. Doing that, we get a `200 OK` and we can see the hidden contents of the page, plus the flag in the item description.
 
 ![Dragon Scroll](/assets/img/issessions26-idor200.png)
 
 <h3>Solving the challenge using SQLMAP</h3>
 
-There are a lot of cases where an application may not be vulnerable to IDOR, which means we need another tactic. Luckily for us, it looks like there's a search field. If you've been web hacking long enough your brain would immediately flag a search bar as a potential SQLi attack vector. These things are ripe for misuse when implemented poorly. Let's examine this using SQLMAP!
+There are a lot of cases where the above exploit wouldn't work, which would mean we need another tactic. Luckily for us, it looks like there's a search field. If you've been web hacking long enough your brain would immediately flag a search bar as a potential SQLi attack vector. These things are ripe for misuse when implemented poorly. Let's examine this using SQLMAP!
 
 
 ```bash
