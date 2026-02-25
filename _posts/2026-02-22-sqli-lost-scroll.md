@@ -9,27 +9,34 @@ tags: [ctf, writeup, sql injection]
 author: Tina Ismail
 ---
 <style>
+    
     body{
         background-image:url(../assets/img/scroll.jpg);
         background-size:contain;
     }
+
+.navbar, footer {
+background-color:#d4a75f7F;
+border:none;
+box-shadow: 0 0 10px #d4a75f7F, 0 0 20px #d4a75f7F;
+}
     p, h1, h2 {
         font-family: 'Palatino', 'Book Antiqua', 'Palatino Linotype', 'Georgia', 'Garamond', 'Times New Roman', serif;
         font-weight:bold;
     }
     .b3{
-        font-family: Harrington, Papyrus;
-        background-color:#436436;
+         font-family: Harrington, Papyrus;
+        background-color: #d4a75f7F;
+        color: #2b1a0f;
+        box-shadow: 0 0 10px #d4a75f7F, 0 0 20px #d4a75f7F;
         border-radius:20px;
         text-align:center;
         padding:1%;
-        color:white;
-        box-shadow: 0 0 10px #436436, 0 0 20px #436436;
         margin-top:30px;
         font-weight:bold;
     }
     *{
-        color:#141210;
+        color:#2b1a0f;
     }
         /* Update your existing pre, code rule */
     pre, code, .highlight pre, .highlighter-rouge pre {
@@ -55,6 +62,7 @@ author: Tina Ismail
     img{
         margin:auto;
     }
+
 </style>
 Greetings weary travellers! Settle down as I tell you my tale of epic intrigue. Few will believe my exploits but I swear it to be true. Here you will learn of my forbidden methods.
 
