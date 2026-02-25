@@ -2,9 +2,9 @@
 layout: post
 title: SQLi Challenge Writeup
 subtitle: ISSessions 2026 Fantasy CTF
-thumbnail-img: /assets/img/issessions26-sqli-shop.png
-share-img: /assets/img/issessions26-sqli-desc.png
-cover-image: /assets/img/issessionsfantasyctf26.jpg
+thumbnail-img: /assets/img/issessionsfantasyctf26.jpg
+share-img: /assets/img/issessions26-sqli-shop.png
+image: /assets/img/issessions26-sqli-shop.png
 tags: [ctf, writeup, sql injection]
 author: Tina Ismail
 ---
@@ -13,11 +13,11 @@ author: Tina Ismail
         background-image:url(../assets/img/scroll.jpg);
         background-size:contain;
     }
-    p {
+    p, h1, h2 {
         font-family: 'Palatino', 'Book Antiqua', 'Palatino Linotype', 'Georgia', 'Garamond', 'Times New Roman', serif;
         font-weight:bold;
     }
-    .b3, h1{
+    .b3{
         font-family: Harrington, Papyrus;
         background-color:#436436;
         border-radius:20px;
