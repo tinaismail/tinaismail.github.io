@@ -30,8 +30,8 @@ author: Tina Ismail
     *{
         color:#141210;
     }
-    code{
-        color=white;
+    pre, code{
+        color:white;
         background-color:black;
     }
     img{
@@ -170,7 +170,7 @@ It's a bit hard to make sense of in the above SQLMAP output snippet, so here is 
 
 <h3>
 <details>
-<summary>The Enchantment We need</summary>
+<summary>The Enchantment We Need</summary>
 
 FantasyCTF{qu3ry_th3_dr4g0n_scr0ll_0f_p0w3r}
 
