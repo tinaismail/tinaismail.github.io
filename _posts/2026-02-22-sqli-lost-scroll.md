@@ -48,13 +48,15 @@ Well it's a subtle detail, but the key here is to change the `Referrer` header t
 There are a lot of cases where the above exploit wouldn't work, which would mean we need another tactic. Luckily for us, it looks like there's a search field. If you've been web hacking long enough your brain would immediately flag a search bar as a potential SQLi attack vector. These things are ripe for misuse when implemented poorly. Let's examine this using SQLMAP!
 
 
-```bash
-sqlmap -u "https://issessionsctf-sql-injection-challenge.chals.io/items/?search=1%3D%3D1" --cookie="session=eyJ1c2VyX2lkIjoxfQ.aZtS0w.ROwLPykA6ybPz7_UPr5jePYct6o" -p search -T items -a --batch
+```
+sqlmap -u "https://issessionsctf-sql-injection-challenge.chals.io/items/?search=1" --cookie="session=eyJ1c2VyX2lkIjoxfQ.aZtS0w.ROwLPykA6ybPz7_UPr5jePYct6o" -p search -a --batch
 ```
 
-The output of this command is a long one, but if you bear with it it tells you all you need, including the true password for our user `slime001`.
+This incantation may appear complicated at first glance, so let's break it apart. The `-u` flag is to specify the target URL, and there's a `--cookie` flag for the session cookie (which is crucial for these requests), and the `-p` flag specifies the injection parameter we're targeting. We're looking to retrieve all available information from the target database so we add `-a`, and `--batch` just tells SQLMAP not to ask for user input.
 
-```bash
+Below is the output of this command which tells us all we need to know, including even the true password for our user `slime001`.
+
+```
         ___
        __H__
  ___ ___[']_____ ___ ___  {1.9.11#stable}
