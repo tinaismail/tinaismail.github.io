@@ -2,9 +2,9 @@
 layout: post
 title: SQLi Challenge Writeup
 subtitle: ISSessions 2026 Fantasy CTF
-thumbnail-img: /assets/img/dse-intro.jpg
-share-img: /assets/img/dse-intro.jpg
-image: /assets/img/dse-intro.jpg
+thumbnail-img: /assets/img/issessions26-sqli-shop.png
+share-img: /assets/img/issessions26-sqli-desc.png
+cover-image: /assets/img/issessionsfantasyctf26.jpg
 tags: [ctf, writeup, sql injection]
 author: Tina Ismail
 ---
@@ -14,7 +14,7 @@ author: Tina Ismail
         background-size:contain;
     }
     p {
-        font-family: "Trebuchet MS", serif;
+        font-family: 'Palatino', 'Book Antiqua', 'Palatino Linotype', 'Georgia', 'Garamond', 'Times New Roman', serif;
         font-weight:bold;
     }
     .b3, h1{
@@ -82,6 +82,7 @@ Suppose I were to input the username `att4ni`. Then the query would look like: `
 Now what if I were a hacker and I wanted to retrieve all the data for every user in the users database? 
 
 <h2 class="b3">Vulnerable Login AKA Alohomora</h2>
+
 With this in mind, we set the username field to slime001, and attempt a sql injection on the password field. This took me quite a while if I'm honest, since I was attempting more complicated injection methods using sqlmap. I'm glad I read up on this tool, because although it did not aid me in this part of the challenge, it came in handy for the following part. At the end, the enchantment that did the trick was `' OR 1=1;--`. After hitting the Submit Query button, we're off to part 2 of the challenge.<br>
 
 ![Login Page](/assets/img/issessions26-sqli.png)
@@ -94,7 +95,7 @@ With this in mind, we set the username field to slime001, and attempt a sql inje
 sqlmap -u "https://issessionsctf-sql-injection-challenge.chals.io/items/?search=1%3D%3D1" --cookie="session=eyJ1c2VyX2lkIjoxfQ.aZtS0w.ROwLPykA6ybPz7_UPr5jePYct6o" -p search -T items -a --batch
 ```
 
-The output of this command is a long one, but if you bear with it it tells you all you need, including the true password for our user slime001.
+The output of this command is a long one, but if you bear with it it tells you all you need, including the true password for our user `slime001`.
 
 ```bash
         ___
