@@ -18,15 +18,13 @@ We enter this portal of dubious origin. The description specifically mentions th
 
 <a class="image" href="https://xkcd.com/327/">![Exploits of a Mom](https://imgs.xkcd.com/comics/exploits_of_a_mom.png)</a>
 
-Fellow merryfolk, I have something to confess: SQL Injections have always frustrated me. They have never come naturally to me, despite having completed multiple rooms on TryHackMe and having a decent understanding of SQL programming. But after this challenge, I have become quite comfortable with the theory and exploitation of this vulnerability. So lets begin!<br>
+Fellow merryfolk, I have something to confess: SQL Injections have always frustrated me. They have never come naturally to me, despite having completed multiple rooms on TryHackMe and having a decent understanding of SQL programming. But after this challenge, I have become quite comfortable with the theory and exploitation of this vulnerability. So let's begin!<br>
 
 I set the username field to slime001, and attempt a SQL injection on the password field. This took me quite a while if I'm honest, since I was attempting more complicated methods using SQLMAP. I'm glad I read up on this tool, because although it did not aid me in this part of the challenge, it came in handy for the following part. At the end, the enchantment that did the trick was `' OR 1=1;--`. This effectively closes the password field prematurely with `'`, adds a condition `OR 1==1` that is always true which forces the database to return records even if the password is incorrect, ends the statement with `;`, and comments out the rest of the code using `--` to prevent compilation errors. After hitting the Submit Query button, we're off to part 2 of the challenge.<br>
 
 ![Login Page](/assets/img/issessions26-sqli.png)
 
 <h2 class="b3">Mythical Shop AKA Show Me Your Wares</h2>
-
-<h3>Exploiting IDOR</h3>
 
 When we enter the shop's homepage, what sticks out to me are the awesome items on display. Having SQL injections fresh in mind, I'm wondering if we're seeing everything there is to offer at this fine establishment? More on that later.
 
@@ -42,8 +40,6 @@ Check out the URLs. Notice something off? It looks like item 3 is missing! I try
 ![IDOR Attempt](/assets/img/issessions26-badrequest.png)
 
 Well it's a subtle detail, but the key here is to change the `Origin` header to be the root path. This makes the application think that you're accessing the resource from clicking on it in the main shop dashboard, instead of just changing the path in the URL directly. Doing that, we get a `200 OK` and we can see the hidden contents of the page, plus the flag in the item description.
-
-
 
 ![Dragon Scroll](/assets/img/issessions26-idor200.png)
 
@@ -139,11 +135,13 @@ Table: items
 
 [*] ending @ 14:27:36 /2026-02-22/
 ```
-The flag is under the current database named `SQLite_masterdb` in the table `items`. Look closely, did you find it? Might be a bit tricky to make out, so lets modify the payload from above to visualize it on screen (optional). I input `1==1' UNION SELECT * FROM items--` into the search bar to query every item in the current database.<br>
+The flag is under the current database named `SQLite_masterdb` in the table `items`. Look closely, did you find it? Might be a bit tricky to make out, so let's modify the payload from above to visualize it on screen (optional). I input `1==1' UNION SELECT * FROM items--` into the search bar to query every item in the current database.<br>
 
 ![All Items](/assets/img/issessions26-allitems.png)
 
 ![Dragon Scroll](/assets/img/issessions26-dragonscroll.png)
+
+Success! We've managed to exploit vulnerabilities in the login and shop pages. The Dragon Scroll truly is a thing of wonders, so let's hope the mythical shopkeeper patches this up soon.
 
 <h2>
 <details>
