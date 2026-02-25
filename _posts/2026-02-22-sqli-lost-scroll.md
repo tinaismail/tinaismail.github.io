@@ -8,63 +8,6 @@ image: /assets/img/issessions26-sqli-shop.png
 tags: [ctf, writeup, sqli, idor]
 author: Tina Ismail
 ---
-<style>
-    
-    body{
-        background-image:url(../assets/img/scroll.jpg);
-        background-size:contain;
-    }
-
-.navbar, footer {
-background-color:#d4a75f7F;
-border:none;
-box-shadow: 0 0 10px #d4a75f7F, 0 0 20px #d4a75f7F;
-}
-    p, h1, h2 {
-        font-family: 'Palatino', 'Book Antiqua', 'Palatino Linotype', 'Georgia', 'Garamond', 'Times New Roman', serif;
-        font-weight:bold;
-    }
-    .b3{
-         font-family: Harrington, Papyrus;
-        background-color: #d4a75f7F;
-        color: #2b1a0f;
-        box-shadow: 0 0 10px #d4a75f7F, 0 0 20px #d4a75f7F;
-        border-radius:20px;
-        text-align:center;
-        padding:1%;
-        margin-top:30px;
-        font-weight:bold;
-    }
-    *{
-        color:#2b1a0f;
-    }
-        /* Update your existing pre, code rule */
-    pre, code, .highlight pre, .highlighter-rouge pre {
-        color: white;
-        background-color: black;
-        padding: 1em;
-        border-radius: 4px;
-        overflow-x: auto;
-    }
-
-    /* Style inline code differently if needed */
-    code {
-        padding: 0.2em 0.4em;
-        font-size: 85%;
-    }
-
-    /* Ensure code inside highlighted blocks is also styled */
-    .highlight code, .highlighter-rouge code {
-        background-color: transparent;
-        color: white;
-        padding: 0;
-    }
-    img{
-        margin:auto;
-    }
-
-</style>
-
 Greetings weary travellers! Settle down as I tell you my tale of epic intrigue. Few will believe my exploits but I swear they be true. Here you will learn of my forbidden methods.
 
 We enter this portal of dubious origin. The description specifically mentions the username `slime001`, and the target URL has the string `sql-injection`. This leads me to believing there is a [SQL injection](https://portswigger.net/web-security/sql-injection) vulnerability in our midst.
@@ -218,3 +161,62 @@ Furthermore, I express my sincerest gratitude to the ISSessions Fantasy CTF team
 
 Cheers!<br>
 Att4ni
+
+<style>
+    
+    body{
+        background-image:url(../assets/img/scroll.jpg);
+        background-size:contain;
+    }
+
+    .navbar, footer {
+        background-color:#d4a75f7F;
+        border:none;
+        box-shadow: 0 0 10px #d4a75f7F, 0 0 20px #d4a75f7F;
+    }
+
+    p, h1, h2 {
+        font-family: 'Palatino', 'Book Antiqua', 'Palatino Linotype', 'Georgia', 'Garamond', 'Times New Roman', serif;
+        font-weight:bold;
+    }
+
+    .b3{
+         font-family: Harrington, Papyrus;
+        background-color: #d4a75f7F;
+        color: #2b1a0f;
+        box-shadow: 0 0 10px #d4a75f7F, 0 0 20px #d4a75f7F;
+        border-radius:20px;
+        text-align:center;
+        padding:1%;
+        margin-top:30px;
+        font-weight:bold;
+    }
+
+    *{
+        color:#2b1a0f;
+    }
+
+    pre, code, .highlight pre, .highlighter-rouge pre {
+        color: white;
+        background-color: black;
+        padding: 1em;
+        border-radius: 4px;
+        overflow-x: auto;
+    }
+
+    code {
+        padding: 0.2em 0.4em;
+        font-size: 85%;
+    }
+
+    .highlight code, .highlighter-rouge code {
+        background-color: transparent;
+        color: white;
+        padding: 0;
+    }
+
+    img{
+        margin:auto;
+    }
+
+</style>
