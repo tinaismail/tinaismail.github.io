@@ -2,9 +2,9 @@
 layout: post
 title: SQLi Challenge Writeup
 subtitle: ISSessions 2026 Fantasy CTF
-thumbnail-img: /assets/img/issessions26-shop.png
-share-img: /assets/img/issessions26-shop.png
-image: /assets/img/issessionsfantasyctf26.jpg
+thumbnail-img: /assets/img/dse-intro.jpg
+share-img: /assets/img/dse-intro.jpg
+image: /assets/img/dse-intro.jpg
 tags: [ctf, writeup, sql injection]
 author: Tina Ismail
 ---
@@ -17,7 +17,7 @@ author: Tina Ismail
         font-family: "Trebuchet MS", serif;
         font-weight:bold;
     }
-    .b3{
+    .b3, h1{
         font-family: Harrington, Papyrus;
         background-color:#436436;
         border-radius:20px;
@@ -177,7 +177,7 @@ Table: items
 
 [*] ending @ 14:27:36 /2026-02-22/
 ```
-The flag is in the table items in the current database named `SQLite_masterdb`. Look closely, did you find it?
+The flag is under the current database named `SQLite_masterdb` in the table `items`. Look closely, did you find it?
 <h3>
 <details>
 <summary>The Enchantment We Need</summary>
