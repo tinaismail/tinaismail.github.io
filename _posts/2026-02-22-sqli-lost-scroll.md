@@ -1,11 +1,11 @@
 ---
 layout: post
-title: SQLi Challenge Writeup
+title: The Lost Scroll Writeup
 subtitle: ISSessions 2026 Fantasy CTF
 thumbnail-img: /assets/img/issessionsfantasyctf26.jpg
 share-img: /assets/img/issessions26-sqli-shop.png
 image: /assets/img/issessions26-sqli-shop.png
-tags: [ctf, writeup, sql injection]
+tags: [ctf, writeup, sqli, idor]
 author: Tina Ismail
 ---
 <style>
@@ -64,40 +64,50 @@ box-shadow: 0 0 10px #d4a75f7F, 0 0 20px #d4a75f7F;
     }
 
 </style>
-Greetings weary travellers! Settle down as I tell you my tale of epic intrigue. Few will believe my exploits but I swear it to be true. Here you will learn of my forbidden methods.
 
-We enter this portal of dubious origin. The description specifically mentions the username slime001, and the target URL has the string sql-injection. This leads me to believe that there is a sql injection vulnerability in the login form. 
+Greetings weary travellers! Settle down as I tell you my tale of epic intrigue. Few will believe my exploits but I swear they be true. Here you will learn of my forbidden methods.
+
+We enter this portal of dubious origin. The description specifically mentions the username `slime001`, and the target URL has the string `sql-injection`. This leads me to believing there is a [SQL injection](https://portswigger.net/web-security/sql-injection) vulnerability in our midst.
 
 ![The Lost Scroll Challenge Discription](/assets/img/issessions26-sqli-desc.png)
 
-<h2 class="b3">The Magic of SQL Injections</h2>
+<h2 class="b3">Vulnerable Login AKA Alohomora</h2>
 
 <a class="image" href="https://xkcd.com/327/">![Exploits of a Mom](https://imgs.xkcd.com/comics/exploits_of_a_mom.png)</a>
 
-Databases are essential to crafting any meaninful web application. Just think about your favourite social media website that has to summon all kinds of information about its users or uploaded content. If you're a library enjoyer like I am, have you ever wondered how your library's catalogue just *knows* what books are available, at which libraries you may find them, and for what ages they're meant? This functionality is made possible through the use of relational databases, a sort of organized store of data stuctured in tables.
+Fellow merryfolk, I have something to confess: SQL Injections have always frustrated me. They have never come naturally to me, despite having completed multiple rooms on TryHackMe and having a decent understanding of SQL programming. But after this challenge, I have become quite comfortable with the theory and exploitation of this vulnerability. So lets begin!<br>
 
-SQL is the glue that binds it all together, and it stands for Structured Query Language. It is a special language used to interact with relational databases to obtain specific information. This technique is especially useful against web applications that do not validate user input before sending it to the backend, giving malicious actors a direct pathway to the database if they know what SQL commands to inject as input. Priviledge escalation can also be performed through this technique.<br>
-
-Below is a standard SQL query within a php script. The query is `"SELECT * FROM users WHERE username='$username'"` where username is a field populated by user input.
-
-```php
-<?php
-    $username = $_GET['username'];
-    $result = mysql_query("SELECT * FROM users WHERE username='$username'");
-?>
-```
-Suppose I were to input the username `att4ni`. Then the query would look like: `"SELECT * FROM users WHERE username='att4ni'"` and the result would give me every entry from the database users where att4ni is the username. Makes sense!<br>
-Now what if I were a hacker and I wanted to retrieve all the data for every user in the users database? 
-
-<h2 class="b3">Vulnerable Login AKA Alohomora</h2>
-
-With this in mind, we set the username field to slime001, and attempt a sql injection on the password field. This took me quite a while if I'm honest, since I was attempting more complicated injection methods using sqlmap. I'm glad I read up on this tool, because although it did not aid me in this part of the challenge, it came in handy for the following part. At the end, the enchantment that did the trick was `' OR 1=1;--`. After hitting the Submit Query button, we're off to part 2 of the challenge.<br>
+I set the username field to slime001, and attempt a SQL injection on the password field. This took me quite a while if I'm honest, since I was attempting more complicated methods using SQLMAP. I'm glad I read up on this tool, because although it did not aid me in this part of the challenge, it came in handy for the following part. At the end, the enchantment that did the trick was `' OR 1=1;--`. This effectively closes the password field prematurely with `'`, adds a condition `OR 1==1` that is always true which forces the database to return records even if the password is incorrect, ends the statement with `;`, and comments out the rest of the code using `--` to prevent compilation errors. After hitting the Submit Query button, we're off to part 2 of the challenge.<br>
 
 ![Login Page](/assets/img/issessions26-sqli.png)
 
 <h2 class="b3">Mythical Shop AKA Show Me Your Wares</h2>
 
+<h3>Exploiting IDOR</h3>
+
+When we enter the shop's homepage, what sticks out to me are the awesome items on display. Having SQL injections fresh in mind, I'm wondering if we're seeing everything there is to offer at this fine establishment? More on that later.
+
 ![Slime001's Mythical Shop](/assets/img/issessions26-sqli-shop.png)
+
+The second thing I notice is the username field in the URL. Perhaps an [IDOR](https://portswigger.net/web-security/access-control/idor) could be performed to enter another more advanced user's shop? After some fuzzing, I abandon this pursuit and proceed to analyzing the items more closely instead.
+
+![Item 1](/assets/img/issessions26-item1.png)
+![Item 2](/assets/img/issessions26-item2.png)
+![Item 4](/assets/img/issessions26-item4.png)
+
+Check out the URLs. Notice something off? It looks like item 3 is missing! I try inputting `3` in the URL but I get an error. What's really happening?<br>
+![IDOR Attempt](/assets/img/issessions26-badrequest.png)
+
+Well it's a subtle detail, but the key here is to change the `Origin` header to be the root path. This makes the application think that you're accessing the resource from clicking on it in the main shop dashboard, instead of just changing the path in the URL directly. Doing that, we get a `200 OK` and we can see the hidden contents of the page, plus the flag in the item description.
+
+
+
+![Dragon Scroll](/assets/img/issessions26-idor200.png)
+
+<h3>Solving the challenge using SQLMAP</h3>
+
+There are a lot of cases where an application may not be vulnerable to IDOR, which means we need another tactic. Luckily for us, it looks like there's a search field. If you've been web hacking long enough your brain would immediately flag a search bar as a potential SQLi attack vector. These things are ripe for misuse when implemented poorly. Let's examine this using SQLMAP!
+
 
 ```bash
 sqlmap -u "https://issessionsctf-sql-injection-challenge.chals.io/items/?search=1%3D%3D1" --cookie="session=eyJ1c2VyX2lkIjoxfQ.aZtS0w.ROwLPykA6ybPz7_UPr5jePYct6o" -p search -T items -a --batch
@@ -186,24 +196,25 @@ Table: items
 
 [*] ending @ 14:27:36 /2026-02-22/
 ```
-The flag is under the current database named `SQLite_masterdb` in the table `items`. Look closely, did you find it?
-<h3>
+The flag is under the current database named `SQLite_masterdb` in the table `items`. Look closely, did you find it? Might be a bit tricky to make out, so lets modify the payload from above to visualize it on screen (optional). I input `1==1' UNION SELECT * FROM items--` into the search bar to query every item in the current database.<br>
+
+![All Items](/assets/img/issessions26-allitems.png)
+
+![Dragon Scroll](/assets/img/issessions26-dragonscroll.png)
+
+<h2>
 <details>
 <summary>The Enchantment We Need</summary>
 
 FantasyCTF{qu3ry_th3_dr4g0n_scr0ll_0f_p0w3r}
 
-</details></h3>
+</details></h2>
 
 <h2 class="b3">Special Acknowledgements</h2>
 
-Thank you to TrendMicro and KPMG for your support this weekend! <br>
+Thank you to TrendMicro and KPMG for your support this weekend! I learned a lot from the insights shared during the resume roast, and greatly enjoyed taking in the sights from the KPMG Toronto office (especially on such a foggy weekend)!<br>
 
-To our friends at TrendMicro, I learned a lot from your insights during the resume roast, and I shall commit to memory the errs of my fellow adventurers and merryfolk in the pursuit of employment. 
-
-Thanks to KPMG for hosting us and opening your Toronto office up for our use - it's always a delight to take in the sights from up so high (especially on such a foggy weekend)!<br>
-
-Finally, I express my sincerest gratitude to the ISSessions Fantasy CTF team for organizing another successful CTF! Your dedication shines through, and the theme this year was most enjoyable. Please spare us the accent next time, if you please.
+Furthermore, I express my sincerest gratitude to the ISSessions Fantasy CTF team for organizing another successful CTF! Your dedication shines through, and the theme this year was most enjoyable. To Jamal, here's a [video](https://youtu.be/64myS6bmNsM) I think you should watch.
 
 Cheers!<br>
 Att4ni
