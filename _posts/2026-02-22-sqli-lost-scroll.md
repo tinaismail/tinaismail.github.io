@@ -155,9 +155,11 @@ FantasyCTF{qu3ry_th3_dr4g0n_scr0ll_0f_p0w3r}
 
 <h2 class="b3">Special Acknowledgements</h2>
 
+To my teammates Jasraj, Aryan, and Viransh - it was a pleasure to work with you all! I'm proud of all the work we put in, and that we could represent McMaster in 3rd place. Go team 0x4D6163!<br>
+
 Thank you to TrendMicro and KPMG for your support this weekend! I learned a lot from the insights shared during the resume roast, and greatly enjoyed taking in the sights from the KPMG Toronto office (especially on such a foggy weekend)!<br>
 
-Furthermore, I express my sincerest gratitude to the ISSessions Fantasy CTF team for organizing another successful CTF! Your dedication shines through, and the theme this year was most enjoyable. To Jamal, here's a [video](https://youtu.be/64myS6bmNsM) I think you should watch.
+Finally, I express my sincerest gratitude to the ISSessions Fantasy CTF team for organizing yet another successful CTF. Your dedication shines through, and the theme this year was most enjoyable! To Jamal, here's a [video](https://youtu.be/64myS6bmNsM) I think you should watch.
 
 Cheers!<br>
 Att4ni
