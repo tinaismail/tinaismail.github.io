@@ -4,7 +4,7 @@ title: About me
 subtitle: Passionate about making (and breaking) things.
 ---
 
-Hey, I'm Tina! I'm an electrical engineering student at McMaster University trying to make my mark as a woman in engineering, cybersecurity, and tech. I have the GIAC Foundational Technologies Certificate (**GFACT**), and received the **ESET Canada Women in Cyber "Future Leader"** scholarship. I served as the previous IEEE McMaster Student Branch Chair, and I'm a **CyberStart Canada alum** and ambassador. Beside all that, you can be sure I'm reading 5+ books at any given time. Ask me what I'm reading at your own risk (I will yap).
+Hey, I'm Tina! I'm a prospective electrical engineering graduate (Anticipated May 2027) at McMaster University keen to make my mark in engineering, cybersecurity, and tech. I have the GIAC Foundational Technologies Certificate (**GFACT**), and was awarded the **ESET Canada Women in Cyber "Future Leader"** scholarship. I'm a **CyberStart Canada alum** and ambassador, and I served as a past IEEE McMaster Student Branch Chair. I am also ranked Top 3% on TryHackMe (tintinn[0xA][WIZARD]).
 
 Learn more about my journey in this Roger's Cybersecurity Catalyst article: [Tina Ismail on Breaking Ground in Cybersecurity](https://cybersecurecatalyst.ca/tina-ismail-on-breaking-ground-in-cybersecurity/)
 
