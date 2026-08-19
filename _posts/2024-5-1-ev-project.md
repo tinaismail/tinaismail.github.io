@@ -7,49 +7,77 @@ share-img: assets/img/ev-project/McMaster_AEV.png
 tags: [engineering]
 author: Tina Ismail
 ---
-This project required me to develop and integrate **software and hardware modules** for the McMaster Autonomous Electrified Vehicle AEV, which is built on a small-scale **(1/10th) RC vehicle** platform.  
-The goal is to develop sensing, planning, and #control modules that allow the vehicle to operate in a range of scenarios from **manual driving**, through manual driving with **driver-assist**, to fully **autonomous driving**. 
+This project was completed as part of a university course focused on the development of an **Autonomous Electric Vehicle (AEV)** using a 1/10-scale RC vehicle platform. The project combined electric motor drives, embedded systems, vehicle control, and autonomous driving, providing hands-on experience across both the hardware and software of a robotic vehicle.
 
-The course used some of the material and existing software stack from the [**F1TENTH**](https://f1tenth.org/) project. 	
+The vehicle was developed using concepts and software from the [**F1TENTH project**](https://f1tenth.org/). Over the course of the project, I worked with **Linux, ROS, C/C++, Python, MATLAB/Simulink, NVIDIA Jetson Nano, VESC motor controllers, LiDAR, and camera-based sensing**.
 
-The first few weeks of the course focused on the electric propulsion system of the vehicle, exploring topics in modeling and control of electric motor drives. The second part concentrated on autonomous driving aspects of the vehicle, where I explored strategies for manual driving with collision avoidance assistance, as well as fully autonomous driving. Moreover, the concept of localization and mapping (SLAM) in autonomous systems was covered. 
+![](/assets/img/ev-project/McMaster_AEV.png)
 
-Throughout the course I gained practical skills in Linux OS, C/C++, Python, the Robot Operating System (ROS), and Matlab Simulink. I used **VESC** (shown below) for operating the motor and Jetson Nano microcontroller.
-![](assets/img/ev-project/VESC.png)
+The final platform integrated a **Jetson Nano** for onboard computation, **LiDAR and camera sensors** for perception, and a **VESC** for propulsion and steering control. This hardware was used to explore several levels of vehicle automation: manual control, driver assistance with collision avoidance, and fully autonomous navigation.
 
-The AEV has a Camera sensor, Jetson Nano microcontroller (?), LIDAR sensor, and [[VESC]].
+## Electric Propulsion and Motor Control
 
-![](assets/img/ev-project/McMaster_AEV.png)
-## Chassis and VESC
-The original chassis contains a servomotor and a brushless DC motor. VESC provides sensor less FOC to drive the motor as well as PPM for the servo.
-![](assets/img/ev-project/chassis.png)
-## [[Brushless DC Motor]]
-- PMSM with surface mounted magnets
-- 3 phase motor where speed is proportional to the input frequency
-- controlled using a 3 phase inverter with Field Oriented Controller
+The first part of the project focused on understanding the vehicle's electric drivetrain.
 
-This specimen is designed for RC car applications
-- 3200 kV (if 1 V is applied, the motor rotates at 3200 RPM)
-- 4 poles
-![](assets/img/ev-project/brushless_motor.png)
+The chassis uses a **three-phase brushless permanent-magnet motor** for propulsion and a servomotor for steering. A VESC motor controller drives the traction motor using **sensorless field-oriented control (FOC)** while also providing an interface for steering commands.
 
+![Vehicle chassis and drivetrain](/assets/img/ev-project/chassis.png)
 
-This is a deep dive into the motor construction.
+![VESC motor controller](/assets/img/ev-project/VESC.png)
 
-## Objective
-- Reverse-engineer the motor by disassembling it and observe the motor geometry
-- Measure the flux linkage of the motor with the no-load rotation test
-- Create a finite element model of the motor
-- Simulate the magnetic flux linkage, as well as torque generation with finite model analysis
-- Compare the simulation results with with experimental results as well as theoretical calculations
+Working with this system gave me practical exposure to the relationship between the electrical behaviour of a motor and the higher-level software commands used to control a vehicle.
 
-### Motor disassembly
-![[Pasted image 20240223000013.png]]
-![[Pasted image 20240223000033.png]]
-### Open circuit test
-- Measurement of induced voltage while rotating the motor under open circuit
-- Induced voltage (Back-EMF) is directly proportional to the rotational speed of the rotor
-- Magnet flux linkage determine how much torque can be generated with a specific current, and how fast the motor can spin given a voltage
-![[Pasted image 20240223001316.png]]
-![[Pasted image 20240223001646.png]]
-- Relation between back-EMF and flux linkage: $$(\lambda_{PM}=\frac{BEMF}{\omega_e})$$
+The traction motor is a **surface-mounted permanent-magnet synchronous motor (PMSM)** designed for RC applications. It is rated at approximately **3200 kV** and uses a four-pole rotor.
+
+![Brushless traction motor](/assets/img/ev-project/brushless_motor.png)
+
+### Motor Characterization
+
+![Disassembled motor components](/assets/img/ev-project/Pasted%20image%2020240223000013.png)
+
+![Motor stator and rotor cross-sections](/assets/img/ev-project/Pasted%20image%2020240223000033.png)
+
+I performed an **open-circuit back-EMF test**, where the motor was mechanically rotated while its induced voltage was measured using an oscilloscope. This demonstrated experimentally that the generated back-EMF increases approximately linearly with rotor speed.
+
+![Back-EMF measurement](/assets/img/ev-project/Pasted%20image%2020240223001316.png)
+
+The measurements were used to estimate the motor's permanent-magnet flux linkage using
+
+$$
+\lambda_{PM} = \frac{E}{\omega_e}
+$$
+
+where (E) is the measured back-EMF and (\omega_e) is the electrical angular velocity.
+
+Plotting the measurements against electrical frequency showed the expected linear relationship between speed and induced voltage, while the calculated flux linkage remained approximately constant across the operating points.
+
+![Measured line-to-line voltage and calculated flux linkage](/assets/img/ev-project/Pasted%20image%2020240223001646.png)
+
+This exercise helped connect several concepts that are easy to treat separately in theory: **motor geometry, permanent-magnet flux, back-EMF, electrical frequency, torque production, and field-oriented control**. I also gained experience comparing experimental measurements with analytical calculations and finite-element motor models.
+
+## Autonomous Driving
+
+The second half of the project shifted from the drivetrain to the autonomous vehicle stack.
+
+Using **ROS on an NVIDIA Jetson Nano**, I worked with the vehicle's sensors and control interfaces to develop and test functionality ranging from manual driving to autonomous operation. The work built on the open-source **F1TENTH** software ecosystem and introduced the structure of a typical autonomous robotics pipeline.
+
+The main areas I worked with included:
+
+* **ROS-based software development and integration**
+* **LiDAR and camera sensing**
+* **Vehicle steering and velocity control**
+* **Collision avoidance and driver-assistance logic**
+* **Autonomous path planning and navigation**
+* **Localization and mapping (SLAM)**
+* **Linux-based development and debugging on embedded hardware**
+* **Python and C/C++ for robotics applications**
+
+One of the most useful aspects of the project was seeing how these areas interact on a physical system. A planning or perception algorithm ultimately has to produce commands that pass through ROS, execute on embedded hardware, reach the VESC, and result in the expected motion of the vehicle.
+
+## What I Took Away
+
+This project gave me experience working across the stack of an autonomous electric vehicle rather than treating propulsion, embedded computing, perception, and control as isolated topics.
+
+On the hardware and controls side, I gained practical experience with **brushless motor construction, PMSM modelling, back-EMF measurement, flux-linkage estimation, field-oriented control, VESC configuration, and MATLAB/Simulink**. On the autonomous systems side, I developed experience with **ROS, Linux, Python, C/C++, LiDAR, camera sensing, SLAM, collision avoidance, planning, and vehicle control**.
+
+More importantly, the project gave me experience integrating these components on a real electric vehicle, where software, electronics, sensors, actuators, and physical vehicle dynamics all have to work together.
