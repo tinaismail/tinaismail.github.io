@@ -47,7 +47,7 @@ $$
 \lambda_{PM} = \frac{E}{\omega_e}
 $$
 
-where (E) is the measured back-EMF and (\omega_e) is the electrical angular velocity.
+where (E) is the measured back-EMF and ($\omega_e$) is the electrical angular velocity.
 
 Plotting the measurements against electrical frequency showed the expected linear relationship between speed and induced voltage, while the calculated flux linkage remained approximately constant across the operating points.
 
