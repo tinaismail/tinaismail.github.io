@@ -17,7 +17,8 @@ It was also a really special moment to have our team recognized by the Office of
 A huge thank you to my amazing teammates, **Sulaksa** and **Jasraj**, for your hard work and effort this weekend.
 
 ![Team and Mentors with 1st Place Cheque](/assets/img/BramptonSecOps/RCC-Sept2026-BramptonHackathon-JustinLenis-Photography(15).jpg){: .img-fluid .rounded .shadow-sm width="800" }
-_(L–R) Tracy Chong, Dr. Nashid Anjum, 'Lanre Olatunde, Rachel Clark, Osman Saleem, Natalie Mendes, Joe Graci, Deputy Mayor Harkirat Singh, Nathan Battersby_
+_Rear (L–R): Tracy Chong, Dr. Nashid Anjum, 'Lanre Olatunde, Rachel Clark, Osman Saleem, Joe Graci, Deputy Mayor Harkirat Singh_
+_Front (L–R): Tina Ismail, Jasraj Singh, Sulaksa Jeevakumar, Natalie Mendes,  Nathan Battersby_
 
 Special thanks to the **Rogers Cybersecure Catalyst**, **Toronto Metropolitan University**, and the **City of Brampton** for hosting an incredible event and providing such fantastic support.
 
