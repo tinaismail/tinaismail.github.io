@@ -56,7 +56,7 @@ As expected, it's a gzip-compressed file. Let's unzip it using `gunzip`.
 
 ![Unzipping the gzip file with gunzip](/assets/img/forensics/unzip&binwalk.png){: .img-fluid .rounded .shadow-sm width="600" }
 
-So it's a Linux filesystem. Neat! Let's dig into it some more with `mmls`.
+Now that we have the disk image file, let's examine its partition table using `mmls`.
 
 ![Using mmls to analyze the disk image](/assets/img/forensics/mmls.png){: .img-fluid .rounded .shadow-sm width="600" }
 
