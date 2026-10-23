@@ -35,9 +35,6 @@ I'll be waiting right here until you're done.
 If you were able to solve it, that's amazing, and you should be proud
 of yourself. If not, let's dive into the solution below!
 
-(You should still be proud of yourself, though. That's kind of a
-non-negotiable, sorry.)
-
 Let's use `wget` to download the target file
 `dds2-alpine.flag.img.gz`. I'm using the CyLab Academy webshell for
 convenience. Note that the filepath will be different for you!
@@ -63,18 +60,64 @@ So it's a Linux filesystem. Neat! Let's dig into it some more with `mmls`.
 
 ![Using mmls to analyze the disk image](/assets/img/forensics/mmls.png){: .img-fluid .rounded .shadow-sm width="600" }
 
-Amazing! Looks like the Linux filesystem partition begins at sector 2048.
+Amazing! Looks like the Linux filesystem partition begins at sector `2048`.
 Let's use `fls` to list out the filesystem.
 
-![Using fls to inspect the filesystem](/assets/img/forensics/fls&flag.png){: .img-fluid .rounded .shadow-sm width="600" }
+```shell
+att4ni-academy@webshell:/tmp$ fls -o 2048 dds2-alpine.flag.img 
+d/d 26417:      home
+d/d 11: lost+found
+r/r 12: .dockerenv
+d/d 20321:      bin
+d/d 4065:       boot
+d/d 6097:       dev
+d/d 2033:       etc
+d/d 8129:       lib
+d/d 14225:      media
+d/d 16257:      mnt
+d/d 18289:      opt
+d/d 16258:      proc
+d/d 18290:      root
+d/d 16259:      run
+d/d 18292:      sbin
+d/d 12222:      srv
+d/d 16260:      sys
+d/d 18369:      tmp
+d/d 12223:      usr
+d/d 14229:      var
+V/V 32513:      $OrphanFiles
+```
 
 That looks promising indeed. Recursively looking at each directory using
 `fls` would take ages. Luckily, there's a helpful flag for that:
 `-r` allows us to search directories recursively.
 
+```shell
+att4ni-academy@webshell:/tmp$ fls -r -o 2048 dds2-alpine.flag.img | egrep "down-at-the-bottom.txt"
++ r/r 18291:    down-at-the-bottom.txt
+```
+
 Piping the output to `egrep` enables us to find the inode of the target
 text file, `down-at-the-bottom.txt`, specified in the challenge
-description.
+description. Looks like the flag file is at inode `18291`.
+
+```shell
+att4ni-academy@webshell:/tmp$ icat -o 2048 dds2-alpine.flag.img 18291
+   _     _     _     _     _     _     _     _     _     _     _     _     _  
+  / \   / \   / \   / \   / \   / \   / \   / \   / \   / \   / \   / \   / \ 
+ ( a ) ( c ) ( a ) ( d ) ( e ) ( m ) ( y ) ( { ) ( f ) ( 0 ) ( r ) ( 3 ) ( n )
+  \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/ 
+   _     _     _     _     _     _     _     _     _     _     _     _     _  
+  / \   / \   / \   / \   / \   / \   / \   / \   / \   / \   / \   / \   / \ 
+ ( s ) ( 1 ) ( c ) ( 4 ) ( t ) ( 0 ) ( r ) ( _ ) ( n ) ( 0 ) ( v ) ( 1 ) ( c )
+  \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/ 
+   _     _     _     _     _     _     _     _     _     _     _  
+  / \   / \   / \   / \   / \   / \   / \   / \   / \   / \   / \ 
+ ( 3 ) ( _ ) ( 9 ) ( 5 ) ( c ) ( 6 ) ( 4 ) ( 5 ) ( a ) ( d ) ( } )
+  \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/ 
+```
+
+![Using fls to inspect the filesystem](/assets/img/forensics/fls&flag.png){: .img-fluid .rounded .shadow-sm width="600" }
 
 Now all that's left is to make sense of the output. Instead of manually
 editing the output and risking deleting something important, I'm going
@@ -103,7 +146,7 @@ for those of you keeping track at home.
 Next up, let's try [this challenge](https://learn.cylabacademy.org/library/285)!
 
 As before, I'll give you the opportunity to solve it first before I
-jump into the solution. I'll wait riiiight here.
+jump into the solution. I'll wait right here.
 
 <div class="spoiler-gate">
   <button id="done-btn-2" class="done-btn" type="button">
@@ -112,13 +155,14 @@ jump into the solution. I'll wait riiiight here.
 </div>
 
 <div id="solution-2" class="spoiler-content" hidden markdown="1">
+Back so soon? I'm not sure you're really solving these. Nevermind.
 
 ## Operation Orchid: The Next Challenge
 
-We get a compressed disk image. Let's get that copied into the `/tmp`
+The challenge gives us a compressed disk image. Let's get that copied into the `/tmp`
 folder of the webshell and check it out.
 
-Note that the download path may be different for you.
+Note that the download path will be different for you.
 
 ```shell
 wget https://challenge-files.cylabacademy.net/library/c43b9c25ad2c97fb0c7c393a7b5f95065b79c0faf5848e1eeb6a453ec3e78f7d/disk.flag.img.gz
