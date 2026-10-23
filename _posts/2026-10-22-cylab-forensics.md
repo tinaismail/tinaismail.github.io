@@ -158,7 +158,7 @@ jump into the solution. I'll wait right here.
 Back so soon? I'm not sure you're really solving these. Nevermind.
 
 ## Operation Orchid: The Next Challenge
-
+![Operation Orchid Challenge Description Screenshot](/assets/img/forensics/operationorchidchallenge.png)
 The challenge gives us a compressed disk image. Let's get that copied into the `/tmp`
 folder of the webshell and check it out.
 
