@@ -269,20 +269,19 @@ academy{h4un71ng_p457_0cf3a06d}
 We got a warning and a `bad decrypt` error, but the recovered file
 contains the expected flag. The warning concerns the legacy key
 derivation method used by the original encryption command. The
-`bad decrypt` message is not something to ignore blindly; in this
-case, the output is what confirms that we recovered the intended
-plaintext.
+`bad decrypt` message is not something to ignore blindly... but we will anyway. Not my monkeys (read: kernel), not my circus (read: server).
 
-Here's the flag: academy{h4un71ng_p457_0cf3a06d}
+We got the flag! Here's it is: 
+
+academy{h4un71ng_p457_0cf3a06d}
 
 ---
 
-It was really fun being able to jump into a couple of forensics
-challenges. Thank you for joining me!
+That officially concludes this short 2-in-1 forensics writeup. It was really fun being able to jump into a couple of forensics challenges, and hopefully this equips me with the practical skillset to solve a couple challenges at some upcoming CTFs. Thank you for joining me!
 
 Until next time,
 
-- Att4ni
+Att4ni
 
 </div>
 
