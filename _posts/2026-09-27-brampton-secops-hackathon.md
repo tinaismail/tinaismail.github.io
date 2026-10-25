@@ -5,7 +5,8 @@ subtitle: HerdShield Helping Farmers Navigate Evolving Cyber Challenges
 thumbnail-img: /assets/img/BramptonSecOps/RCC-Sept2026-BramptonHackathon-JustinLenis-Photography(10).jpg
 share-img: /assets/img/BramptonSecOps/RCC-Sept2026-BramptonHackathon-JustinLenis-Photography(10).jpg
 categories: [hackathon, cybersecurity]
-tags: [cybersecurity, hackathon, Brampton, SecOps, career, engineering]
+tags: [cybersecurity, hackathon, entrepreneurship, career]
+featured: true
 author: Tina Ismail
 ---
 Over the weekend, my team placed **1st at the Brampton SecOps Hackathon**! This was an intense competition where top talent in technology and cybersecurity came together to tackle critical cybersecurity challenges facing small-to-medium businesses. With help and feedback from the mentors, we were able to zero in on the winning idea and perfect our pitch.

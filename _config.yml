@@ -21,8 +21,7 @@ author: Tina Ismail
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - Learn markdown: "https://www.markdowntutorial.com/"
+  Posts: "/posts/"
 
 ################
 # --- Logo --- #
@@ -53,9 +52,9 @@ social-network-links:
   github: tinaismail
   tryhackme: tintinn
   devpost: tinaismail
+  linkedin: tina-ismail
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
-#  linkedin: daattali
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
@@ -157,9 +156,18 @@ footer-hover-col: "#0085A1"
 #site-css:
 #  - "/assets/css/custom-styles.css"
 
+# Additional styles used by the homepage featured-post carousel
+site-css:
+  - "/assets/css/custom-styles.css"
+
 # If you have common JavaScript files that should be included in every page, list them here
 #site-js:
 #  - "/assets/js/custom-script.js"
+
+# Additional scripts used by the homepage featured-post carousel
+site-js:
+  - "/assets/js/featured-posts.js"
+  - "/assets/js/posts-filter.js"
 
 #################################
 # --- Web Analytics Section --- #
@@ -296,4 +304,3 @@ plugins:
   - jekyll-sitemap
 
 # 2fc73a3a967e97599c9763d05e564189
-

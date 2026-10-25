@@ -5,8 +5,9 @@ subtitle: ISSessions 2026 Fantasy CTF
 thumbnail-img: /assets/img/issessionsfantasyctf26.jpg
 share-img: /assets/img/issessions26-sqli-shop.png
 image: /assets/img/issessions26-sqli-shop.png
-tags: [ctf, writeup, sqli]
+tags: [web-security, sql-injection, idor, ctf, writeup]
 author: Tina Ismail
+featured: true
 ---
 Greetings weary travellers! Settle down as I tell you my tale of epic intrigue. Few will believe my exploits but I swear they be true. Here you will learn of my forbidden methods.
 

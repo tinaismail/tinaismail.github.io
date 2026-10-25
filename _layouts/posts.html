@@ -1,0 +1,64 @@
+---
+layout: page
+---
+
+<div class="posts-page">
+  {% assign posts = site.posts | sort: "date" | reverse %}
+  {% assign post_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort_natural %}
+
+  <div class="posts-filter">
+    <label for="post-tag-filter">Filter by tag</label>
+    <select id="post-tag-filter">
+      <option value="all">All tags</option>
+      {% for tag in post_tags %}
+        {% assign tag_name = tag | strip %}
+        {% if tag_name != "" %}
+          <option value="{{ tag_name | downcase | escape }}">{{ tag_name }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    <p id="post-filter-status" class="posts-filter-status" aria-live="polite"></p>
+  </div>
+
+  <div class="posts-grid">
+    {% for post in posts %}
+      {% capture thumbnail %}
+        {% if post.thumbnail-img %}
+          {{ post.thumbnail-img }}
+        {% elsif post.cover-img %}
+          {% if post.cover-img.first %}
+            {{ post.cover-img[0].first.first }}
+          {% else %}
+            {{ post.cover-img }}
+          {% endif %}
+        {% endif %}
+      {% endcapture %}
+      {% assign thumbnail = thumbnail | strip %}
+
+      <article class="post-card" data-tags="{{ post.tags | join: ',' | downcase | escape }}">
+        {% if thumbnail != "" %}
+          <a class="post-card-image" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
+            <img src="{{ thumbnail | relative_url }}" alt="" loading="lazy">
+          </a>
+        {% endif %}
+
+        <div class="post-card-content">
+          <p class="post-card-date">
+            {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+            {{ post.date | date: date_format }}
+          </p>
+
+          <h2 class="post-card-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | strip_html }}</a>
+          </h2>
+
+
+
+          <a class="post-card-link" href="{{ post.url | relative_url }}">
+            Read post <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</div>

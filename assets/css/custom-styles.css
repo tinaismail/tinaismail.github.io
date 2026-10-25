@@ -1,0 +1,266 @@
+.featured-posts {
+  padding: 3rem 0 3.5rem;
+  background: #f4f1ea;
+}
+
+.featured-posts-heading {
+  margin: 0 auto 1.5rem;
+  max-width: 700px;
+}
+
+.featured-posts-kicker {
+  color: #9b4d32;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.featured-posts-heading h2 {
+  color: #253d3a;
+  font-family: Lora, Georgia, serif;
+  font-size: 2rem;
+  margin: .25rem 0 0;
+}
+
+.featured-posts .carousel {
+  margin: 0 auto;
+  max-width: 700px;
+  padding-bottom: 2.5rem;
+}
+
+.featured-post-card {
+  align-items: stretch;
+  background: #fff;
+  color: #404040;
+  display: flex;
+  min-height: 260px;
+  text-decoration: none;
+}
+
+.featured-post-card:hover,
+.featured-post-card:focus {
+  color: #404040;
+  text-decoration: none;
+}
+
+.featured-post-image {
+  flex: 0 0 42%;
+}
+
+.featured-post-image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.featured-post-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.featured-post-date {
+  color: #9b4d32;
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.featured-post-content h3 {
+  color: #253d3a;
+  font-family: Lora, Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: .5rem 0;
+}
+
+.featured-post-content p {
+  margin-bottom: 1rem;
+}
+
+.featured-post-link {
+  color: #9b4d32;
+  font-weight: 700;
+}
+
+.featured-posts .carousel-indicators {
+  bottom: 0;
+  margin-bottom: 0;
+}
+
+.featured-posts .carousel-indicators li {
+  background-color: #9b4d32;
+}
+
+.featured-posts .carousel-control-prev-icon,
+.featured-posts .carousel-control-next-icon {
+  background-color: #253d3a;
+  background-size: 55%;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+}
+
+.posts-page {
+  padding: 1rem 0 3rem;
+}
+
+.posts-filter {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.posts-filter label {
+  color: #253d3a;
+  font-weight: 700;
+  margin: 0;
+}
+
+.posts-filter select {
+  background: #fff;
+  border: 1px solid #cfc8bc;
+  border-radius: .2rem;
+  color: #404040;
+  min-width: 180px;
+  padding: .5rem .75rem;
+}
+
+.posts-filter select:focus {
+  border-color: #9b4d32;
+  box-shadow: 0 0 0 .15rem rgba(155, 77, 50, .2);
+  outline: 0;
+}
+
+.posts-filter-status {
+  color: #68726f;
+  font-size: .9rem;
+  margin: 0;
+}
+
+.posts-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.post-card {
+  background: #fff;
+  border: 1px solid #e3ded4;
+  box-shadow: 0 8px 24px rgba(37, 61, 58, .08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 12px 30px rgba(37, 61, 58, .14);
+  transform: translateY(-3px);
+}
+
+.post-card-image {
+  display: block;
+  height: 190px;
+  overflow: hidden;
+}
+
+.post-card-image img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform .2s ease;
+  width: 100%;
+}
+
+.post-card:hover .post-card-image img {
+  transform: scale(1.03);
+}
+
+.post-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.post-card-date {
+  color: #9b4d32;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  margin-bottom: .65rem;
+  text-transform: uppercase;
+}
+
+.post-card-title {
+  font-family: Lora, Georgia, serif;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.post-card-title a {
+  color: #253d3a;
+}
+
+.post-card-title a:hover,
+.post-card-title a:focus {
+  color: #9b4d32;
+  text-decoration: none;
+}
+
+.post-card-subtitle {
+  color: #68726f;
+  font-size: .95rem;
+  margin: .6rem 0 0;
+}
+
+.post-card-link {
+  color: #9b4d32;
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.post-card-link:hover,
+.post-card-link:focus {
+  color: #253d3a;
+}
+
+@media (max-width: 991.98px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .featured-posts {
+    padding: 2.25rem 0 2.75rem;
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-post-card {
+    display: block;
+  }
+
+  .featured-post-image {
+    height: 170px;
+  }
+
+  .featured-post-content {
+    min-height: 220px;
+    padding: 1.5rem;
+  }
+
+  .featured-posts .carousel-control-prev,
+  .featured-posts .carousel-control-next {
+    width: 12%;
+  }
+}

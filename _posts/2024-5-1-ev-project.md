@@ -4,8 +4,9 @@ title: AEV Project
 subtitle: ELECENG 3EY4
 thumbnail-img: assets/img/ev-project/McMaster_AEV.png
 share-img: assets/img/ev-project/McMaster_AEV.png
-tags: [engineering]
+tags: [autonomous-vehicles, robotics, embedded-systems, motor-control]
 author: Tina Ismail
+featured: false
 ---
 This project was completed as part of a university course focused on the development of an **Autonomous Electric Vehicle (AEV)** using a 1/10-scale RC vehicle platform. The project combined electric motor drives, embedded systems, vehicle control, and autonomous driving, providing hands-on experience across both the hardware and software of a robotic vehicle.
 

@@ -5,7 +5,8 @@ subtitle: "DiskDiskSleuth2 and Operation Orchid"
 thumbnail-img: "/assets/img/forensics/DiskdisksleuthII.png"
 share-img: "/assets/img/forensics/DiskdisksleuthII.png"
 categories: [cybersecurity]
-tags: [cybersecurity, writeup, forensics]
+tags: [forensics, disk-analysis, ctf, writeup]
+featured: false
 ---
 
 Hello fellow sleuths! Welcome to my writeup for these medium-difficulty

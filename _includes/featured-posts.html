@@ -1,0 +1,50 @@
+{% assign featured_posts = site.posts | where: "featured", true | sort: "date" | reverse %}
+{% if featured_posts.size > 0 %}
+<section class="featured-posts" aria-labelledby="featured-posts-title">
+  <div class="container-md">
+    <div class="featured-posts-heading">
+      <span class="featured-posts-kicker">From the blog</span>
+      <h2 id="featured-posts-title">Featured Posts</h2>
+    </div>
+
+    <div id="featured-posts-carousel" class="carousel slide" data-ride="carousel" data-interval="6500">
+      <ol class="carousel-indicators">
+        {% for post in featured_posts %}
+        <li data-target="#featured-posts-carousel" data-slide-to="{{ forloop.index0 }}"{% if forloop.first %} class="active"{% endif %}>
+          <span class="sr-only">Slide {{ forloop.index }}</span>
+        </li>
+        {% endfor %}
+      </ol>
+
+      <div class="carousel-inner">
+        {% for post in featured_posts %}
+        <article class="carousel-item{% if forloop.first %} active{% endif %}">
+          <a class="featured-post-card" href="{{ post.url | relative_url }}">
+            {% if post.thumbnail-img %}
+            <div class="featured-post-image">
+              <img src="{{ post.thumbnail-img | relative_url }}" alt="{{ post.title | strip_html }}">
+            </div>
+            {% endif %}
+            <div class="featured-post-content">
+              <span class="featured-post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+              <h3>{{ post.title | strip_html }}</h3>
+              {% if post.subtitle %}<p>{{ post.subtitle | strip_html }}</p>{% endif %}
+              <span class="featured-post-link">Read post <span aria-hidden="true">&rarr;</span></span>
+            </div>
+          </a>
+        </article>
+        {% endfor %}
+      </div>
+
+      {% if featured_posts.size > 1 %}
+      <a class="carousel-control-prev" href="#featured-posts-carousel" role="button" data-slide="prev" aria-label="Previous featured post">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </a>
+      <a class="carousel-control-next" href="#featured-posts-carousel" role="button" data-slide="next" aria-label="Next featured post">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
