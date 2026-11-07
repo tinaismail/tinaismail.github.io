@@ -1,8 +1,8 @@
 ---
 layout: post
 title: I was featured in a profile piece by Rogers Cybersecure Catalyst
-thumbnail-img: https://cybersecurecatalyst.ca/wp-content/uploads/2026/05/1779393800286_Tina.webp
-share-img: https://cybersecurecatalyst.ca/wp-content/uploads/2026/05/1779393800286_Tina.webp
+thumbnail-img: /assets/img/catalyst.png
+share-img: /assets/img/catalyst.png
 categories: [cybersecurity]
 tags: [cybersecurity, career, profile]
 featured: true
