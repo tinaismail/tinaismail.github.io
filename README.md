@@ -17,6 +17,7 @@ bundle exec jekyll build --future
 - [Features](#features)
 - [Sponsors 🏆](#sponsors)
 - [**Build your website in 3 steps**](#build-your-website-in-3-steps)
+- [Run locally with WSL](#run-locally-with-wsl)
 - [Plans](#plans)
 - [Add your own content](#add-your-own-content)
 - [Customizing parameters for each page](#customizing-parameters-for-each-page)
@@ -97,6 +98,32 @@ The instructions above explain how to use Beautiful Jekyll in the easiest way: b
 
 Beautiful Jekyll is, and always will be, free. But if you want to remove the Beautiful Jekyll ad from your website, use a Dark Mode skin, access office hours, or simply support the development efforts, [check out the different plans](https://beautifuljekyll.com/plans).
 
+# Run locally with WSL
+
+The site can be built and previewed locally from Windows Subsystem for Linux (WSL). From your WSL terminal, first install Ruby, Bundler, and the project dependencies if you have not already done so:
+
+```bash
+sudo apt update
+sudo apt install ruby-full build-essential
+cd "/mnt/c/Users/Tina Ismail/Desktop/portfolio website/tinaismail.github.io"
+gem install bundler
+bundle install
+```
+
+Start Jekyll with automatic rebuilding:
+
+```bash
+bundle exec jekyll serve \
+  --host 0.0.0.0 \
+  --port 4000 \
+  --watch \
+  --force_polling
+```
+
+Open [http://localhost:4000](http://localhost:4000) in your browser. Leave the WSL terminal running while you edit the site; Jekyll will rebuild the generated site after saved changes.
+
+The `--force_polling` option is recommended when the repository is stored on the Windows filesystem under `/mnt/c`, because Linux file-watch events may not be delivered reliably for Windows-side edits. If the repository is stored inside the WSL filesystem instead, such as under `~/projects`, `--watch` is usually sufficient.
+
 # Add your own content
 
 To add pages to your site, you can either write a markdown file (`.md`) or you can write an HTML file. It's much easier to write markdown than HTML, so that's the recommended approach ([here's a great tutorial](https://markdowntutorial.com/) if you need to learn markdown in 5 minutes).
@@ -149,6 +176,7 @@ subtitle    | Short description of page or blog post that goes under the title
 tags        | List of tags to categorize the post. Separate the tags with commas and place them inside square brackets. Example: `[personal, analysis, finance]`
 cover-img   | Include a large full-width image at the top of the page. You can either provide the path to a single image (eg. `"/path/to/img"`) , or a list of images to cycle through (eg. `["/path/img1", "/path/img2"]`). If you want to add a caption to an image, then you must use the list notation (use `[]` even if you have only one image), and each image should be provided as `"/path/to/img" : "Caption of image"`.
 thumbnail-img | For blog posts, if you want to add a thumbnail that will show up in the feed, use `thumbnail-img: /path/to/image`. If no thumbnail is provided, then `cover-img` will be used as the thumbnail. You can use `thumbnail-img: ""` to disable a thumbnail.
+thumbnail-position | Optional CSS `object-position` value for the thumbnail, such as `thumbnail-position: 70% 30%`, to control which part of the image remains visible when it is cropped. If omitted, the default centered crop is used.
 comments    | If you want do add comments to a specific page, use `comments: true`. Comments only work if you enable one of the comments providers (Facebook, disqus, staticman, utterances, giscus, CommentBox) in `_config.yml` file. Comments are automatically enabled on blog posts but not on other pages; to turn comments off for a specific post, use `comments: false`.
 mathjax     | If you want to use LaTeX formulas, you need to enable MathJax. Note that in MathJax you need to use `$$` and `\\(` to start and end expressions
 
@@ -240,4 +268,3 @@ You can also contribute by becoming an [official sponsor](https://github.com/spo
 This template was not made *entirely* from scratch. I'd like to give special thanks to [Jekyll Now](https://github.com/barryclark/jekyll-now) and [Bootstrap Clean Blog](https://github.com/IronSummitMedia/startbootstrap-clean-blog), from whom I've taken several ideas initially.
 
 I'd also like to thank [Dr. Jekyll's Themes](https://drjekyllthemes.github.io/), [Jekyll Themes](http://jekyllthemes.org/), and another [Jekyll Themes](http://jekyllrc.github.io/jekyllthemes/) for featuring Beautiful Jekyll in their Jekyll theme directories.
-

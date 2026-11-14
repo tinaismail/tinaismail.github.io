@@ -38,7 +38,7 @@ layout: page
       <article class="post-card" data-tags="{{ post.tags | join: ',' | downcase | escape }}">
         {% if thumbnail != "" %}
           <a class="post-card-image" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
-            <img src="{{ thumbnail | relative_url }}" alt="" loading="lazy">
+            <img src="{{ thumbnail | relative_url }}" alt="" loading="lazy"{% if post.thumbnail-position %} style="object-position: {{ post.thumbnail-position | escape }};"{% endif %}>
           </a>
         {% endif %}
 

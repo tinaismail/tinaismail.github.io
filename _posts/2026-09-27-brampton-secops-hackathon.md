@@ -3,6 +3,7 @@ layout: post
 title: Winning 1st Place at the Brampton SecOps Hackathon
 subtitle: HerdShield Helping Farmers Navigate Evolving Cyber Challenges
 thumbnail-img: /assets/img/BramptonSecOps/RCC-Sept2026-BramptonHackathon-JustinLenis-Photography(10).jpg
+thumbnail-position: 20% 80%
 share-img: /assets/img/BramptonSecOps/RCC-Sept2026-BramptonHackathon-JustinLenis-Photography(10).jpg
 categories: [hackathon, cybersecurity]
 tags: [cybersecurity, hackathon, entrepreneurship, career]

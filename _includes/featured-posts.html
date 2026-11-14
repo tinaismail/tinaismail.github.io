@@ -22,7 +22,7 @@
           <a class="featured-post-card" href="{{ post.url | relative_url }}">
             {% if post.thumbnail-img %}
             <div class="featured-post-image">
-              <img src="{{ post.thumbnail-img | relative_url }}" alt="{{ post.title | strip_html }}">
+              <img src="{{ post.thumbnail-img | relative_url }}" alt="{{ post.title | strip_html }}"{% if post.thumbnail-position %} style="object-position: {{ post.thumbnail-position | escape }};"{% endif %}>
             </div>
             {% endif %}
             <div class="featured-post-content">
